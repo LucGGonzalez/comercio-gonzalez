@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/NavBar';
+import ItemListContainer from './components/ItemListContainer';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <p>
           Project TBD
         </p>
+        <ItemListContainer/>
         <a
           className="App-link"
           href="https://reactjs.org"
