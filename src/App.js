@@ -12,7 +12,7 @@ function App() {
         <p>
           Project TBD
         </p>
-        <ItemListContainer/>
+        <ItemListContainer saludo={'hola'}/>
         <a
           className="App-link"
           href="https://reactjs.org"

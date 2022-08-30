@@ -1,7 +1,9 @@
+import CartWidget from './CartWidget';
+
 const NavBar = () => {
     return (
         <div className="navBarBox">
-            {/* <img src={} className="navBarLogo"/> */}
+            <CartWidget/>
 
             <a href="#home">Home</a>
             <a href="#news">News</a>
