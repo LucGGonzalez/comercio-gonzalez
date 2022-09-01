@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
 
 function App() {
+  const stock = 10
   return (
     <div className="App">
       <header className="App-header">
@@ -12,7 +13,7 @@ function App() {
         <p>
           Project TBD
         </p>
-        <ItemListContainer saludo={'hola'}/>
+        <ItemListContainer stock={stock}/>
         <a
           className="App-link"
           href="https://reactjs.org"
