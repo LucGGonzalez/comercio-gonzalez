@@ -13,7 +13,8 @@ function App() {
         <p>
           Project TBD
         </p>
-        <ItemListContainer stock={stock}/>
+        <ItemListContainer saludo={'Bienvenido'}/>
+        <itemCount stock={stock}/>
         <a
           className="App-link"
           href="https://reactjs.org"
