@@ -1,4 +1,3 @@
-// import ItemCount from './ItemCount'
 import data from "./mockData";
 import { useEffect, useState } from "react";
 import ItemList from "./ItemList";
