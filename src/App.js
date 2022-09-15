@@ -1,20 +1,20 @@
 import './App.css';
 import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
-import ItemCount from './components/ItemCount';
+import ItemDetailContainer from './components/ItemDetailContainer';
 import React from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 function App() {
-  const stock = 10
   return (
     <div className="App">
       <BrowserRouter>
       <NavBar/>
       <Routes>
         <Route path="/" element={<ItemListContainer saludo={'Bienvenido'}/>}></Route>
+        <Route path="/detail/:idItem" element= {<ItemDetailContainer/>}></Route>
+        <Route path="/category/:idItem" element= {<ItemDetailContainer/>}></Route>
       </Routes>
-        <ItemCount stock={stock}/>
       </BrowserRouter>
     </div>
   );

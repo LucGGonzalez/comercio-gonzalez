@@ -1,28 +1,30 @@
 import data from "./mockData";
 import { useEffect, useState } from "react";
 import ItemDetail from "./ItemDetail";
+import {useParams} from 'react-router-dom'
 
 const ItemDetailContainer = () => {
-    const [productList, setProductsList] = useState([])
+    const [items, setItems] = useState([])
 
     useEffect(() => {
-        getProducts.then((response) => {
-            setProductsList(response)
+        getItems.then((response) => {
+            setItems(response)
         });
     }, [])
 
-    const getProducts = new Promise ((resolve, reject) => {
+    const getItems = new Promise ((resolve, reject) => {
         setTimeout(() =>{
-            resolve(data);
+            resolve(data.find(data => data.id = 1));
         }, 2000);
        })
+        
 
     return (
         <>
-            <ItemDetail lista={productList}/>
+            <ItemDetail items={items}/>
         </>
     );
     
-};
+}
 
 export default ItemDetailContainer;
