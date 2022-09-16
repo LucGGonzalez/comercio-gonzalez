@@ -1,9 +1,12 @@
 import data from "./mockData";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
 
 const ItemListContainer = ({saludo}) => {
     const [productList, setProductsList] = useState([])
+    const {categoryName} = useParams();
+    if(categoryName){}
 
     useEffect(() => {
         getProducts.then((response) => {
