@@ -1,17 +1,23 @@
 import ItemCount from './ItemCount';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
-const ItemDetail = ({title, price, image, description, id}) => {
-    return(
-        
+const ItemDetail = () => {
+    const [count, setCount] = useState(0);
+
+    const handleClick = () => {
+        console.log(count);
+    };
+    return (
         <div>
-            <h1>detalle {id}</h1>
-            <img src={image} alt={title}/>
-            <h2>{title}</h2>
-            <h3>{price}</h3>
-            <h4>{description}</h4>
-            <ItemCount stock={10}/>
+            <h1>Detalle de producto</h1>
+            <h2>Precio: 100</h2>
+            <ItemCount setCount={setCount} count={count} />
+            <Link to={'/cart'} onClick={handleClick}>
+                Ir a pagar.
+            </Link>
         </div>
-    )
-}
+    );
+};
 
 export default ItemDetail
