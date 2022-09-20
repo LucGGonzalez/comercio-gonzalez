@@ -5,6 +5,9 @@ import {useParams} from 'react-router-dom'
 
 const ItemDetailContainer = () => {
     const [items, setItems] = useState([])
+    const {itemId} = useParams();
+
+    if(itemId){}
 
     useEffect(() => {
         getItems.then((response) => {
@@ -14,7 +17,7 @@ const ItemDetailContainer = () => {
 
     const getItems = new Promise ((resolve, reject) => {
         setTimeout(() =>{
-            resolve(data.find(data => data.id = 1));
+            resolve(data);
         }, 2000);
        })
         
