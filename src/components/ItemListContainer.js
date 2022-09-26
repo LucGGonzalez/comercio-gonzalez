@@ -1,28 +1,43 @@
-import data from "./mockData";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
+import {getFirestore, getDocs, collection, query} from 'firebase/firestore';
 
 const ItemListContainer = ({saludo}) => {
     const [productList, setProductsList] = useState([])
     const {categoryName} = useParams();
-    if(categoryName){}
+
+    const getProducts = () => {
+        const db = getFirestore();
+        const querySnapshot = collection(db, 'items');
+
+        if(categoryName){
+            const queryFiltered = query(querySnapshot, where("categoryId","==", categoryName)
+        );
+            getDocs(queryFiltered).then((response) => {
+                const data = response.docs.map((product) => {
+                    return { id: product.id, ...product.data() };
+                });
+                setProductsList(data);
+            });
+        }else{
+            getDocs(querySnapshot).then((response) => {
+                const data = response.docs.map((product) => {
+                    return { id: product.id, ...product.data() };
+                });
+                setProductsList(data);
+            });
+        };
+    };
 
     useEffect(() => {
-        getProducts.then((response) => {
-            setProductsList(response)
-        });
-    }, [])
+        getProducts();
 
-    const getProducts = new Promise ((resolve, reject) => {
-        setTimeout(() =>{
-            resolve(data);
-        }, 2000);
-       })
+    }, [categoryName]);
 
     return (
         <>
-            <ItemList lista={productList}/>
+            <ItemList productList={productList}/>
             <h3>{saludo}</h3>
         </>
     );
@@ -30,3 +45,11 @@ const ItemListContainer = ({saludo}) => {
 };
 
 export default ItemListContainer;
+
+// if(categoryName){}
+
+//     useEffect(() => {
+//         getProducts.then((response) => {
+//             setProductsList(response)
+//         });
+//     }, [])
