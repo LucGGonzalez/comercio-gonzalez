@@ -4,31 +4,55 @@ import {useParams} from 'react-router-dom';
 import {getFirestore, doc, getDoc} from 'firebase/firestore';
 
 const ItemDetailContainer = () => {
-    const [items, setItems] = useState([])
-    const {itemId} = useParams();
-    const db = getFirestore();
-    //En vez del id directo va la const del useparams
-    const queryDoc = doc(db, 'items', 'gVEanHBReLOa9wkvCY5A');
-    
-    getDoc(queryDoc).then((res) => {})
+    const [loading, setLoading] = useState(false)
 
-    const getItems = () => {
-        const queryDoc = doc(db, 'items', 'gVEanHBReLOa9wkvCY5A');
-        getDoc(queryDoc).then((res) => {
-            setItems(res.data());
-        })
-    };
+    const [item, setItem] = useState([])
+    const { productId } = useParams()
 
     useEffect(() => {
-        getItems();
-    }, [itemId]);
-        
+        setLoading(true)
+        const db = getFirestore()
+        const docRef = db.collection('items').doc(productId)
+
+        docRef.get().then((querySnapshot) => {
+            setLoading(false)
+            setItem({ id: querySnapshot.id, ...querySnapshot.data() })
+        })
+    }, [productId])
+
     return (
-        <>
-            {items && <ItemDetail items={items}/>}
-        </>
-    );
-    
+        <div>
+            {loading === true ? <span/> : <ItemDetail item={item} />}
+        </div>
+    )
 }
 
 export default ItemDetailContainer;
+
+// const ItemDetailContainer = () => {
+//     const [items, setItems] = useState([])
+//     const {itemId} = useParams();
+//     const db = getFirestore();
+//     //En vez del id directo va la const del useparams
+//     const queryDoc = doc(db, 'items', 'gVEanHBReLOa9wkvCY5A');
+    
+//     getDoc(queryDoc).then((res) => {})
+
+//     const getItems = () => {
+//         const queryDoc = doc(db, 'items', 'gVEanHBReLOa9wkvCY5A');
+//         getDoc(queryDoc).then((res) => {
+//             setItems(res.data());
+//         })
+//     };
+
+//     useEffect(() => {
+//         getItems();
+//     }, [itemId]);
+        
+//     return (
+//         <>
+//             {items && <ItemDetail items={items}/>}
+//         </>
+//     );
+    
+// }
