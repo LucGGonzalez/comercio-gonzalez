@@ -7,7 +7,7 @@ const NavBar = () => {
             
             <ul className="lista">
                 <li><NavLink to= {'/'}>Productos</NavLink></li>
-                <li><NavLink to= {'/category/'}>Category</NavLink></li>
+                <li><NavLink to= {'/categoryId/'}>Category</NavLink></li>
             </ul>
 
             <button id="botonCarrito"> <span id="contadorCarrito">0</span></button>
